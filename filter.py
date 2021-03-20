@@ -11,11 +11,23 @@ def swapRedBlue( src ):
     rows = src.getHeight()
     cols = src.getWidth()
     # loop through the rows of the image
-    for i in range( rows ):
+    for row in range( rows ):
         # loop through the rows of the image
-        for j in range( cols):
-            r, g, b = src.getPixel( cols, rows ) #this libe gets the value of the pixel at (cols, rows) returning 3 values
+        for col in range( cols):
+            r, g, b = src.getPixel( col, row ) #this libe gets the value of the pixel at (cols, rows) returning 3 values
             src.setPixel( cols, rows, gr.color_rgb( b, g, r)) # set the value of the pixel at (cols, rows) to (b, g, r)
+
+def reduceGreen( src ):
+    rows = src.getHeight()
+    cols = src.getWidth()
+    for row in range(rows):
+        for col in range(cols):
+            # get the value of the pixel at (col, row)
+            r, g, b = src.getPixel( col, row ) # this function returns 3 values
+            # option1: rgb = red value is rgb[0], green value is rgb[1], blue value is rgb[2]
+            # option2: r is red value, g is green value, b is the blue value
+            # set the value of the pixel at (col, row) to halve the red value (integer division)
+            src.setPixel( col, row, gr.color_rgb( r, g//2, b) )
 
 def main( argv ):
 
@@ -37,7 +49,7 @@ def main( argv ):
 
     # call the filter function before the image is drawn into a window
     swapRedBlue(image)
-    # reduceRed( image )
+    reduceGreen( image )
 
     image.draw(win)
 

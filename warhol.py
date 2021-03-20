@@ -4,20 +4,8 @@
 # 03/15/2021
 
 import graphicsPlus as gr
+import filter   
 import sys
-
-#function named something like swapRedBlue that takes in one argument, which will be an Image object
-def swapRedBlue( src ):
-    rows = src.getHeight() # provides the number of rows in the image
-    cols = src.getWidth() # provides the number of columns in the image 
-    # loop through the rows of the image
-    for row in range( rows ):
-        # loop through the cols of the image
-        for col in range( cols):
-            r, g, b = src.getPixel( col, row ) #this line gets the value of the pixel at (cols, rows) returning 3 values
-            src.setPixel( cols, rows, gr.color_rgb( b, g, r)) # set the value of the pixel at (cols, rows) to (b, g, r)
-
-            #it is best to loop through the row in the outer loop because that is how the image is stored in the computers memory. It 
 
 def main( argv ):
 
@@ -36,7 +24,7 @@ def main( argv ):
     win = gr.GraphWin( filename, cols*2, rows )
     clonedImage = image.clone()
     # call the filter function before the image is drawn into a window
-    swapRedBlue(clonedImage)
+    filter.swapRedBlue(clonedImage)
 
 
     # move the image so it is centered in the window
@@ -47,10 +35,7 @@ def main( argv ):
     clonedImage.move( cols/2 + cols, rows/2 )
     clonedImage.draw(win)
 
-
-
- 
-    # reduceRed( image )
+    filter.reduceGreen( image )
 
 
     win.getMouse()

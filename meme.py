@@ -6,12 +6,10 @@
 
 import sys
 import graphicsPlus as gr
-import image  # contains the filters
 import time
 
-# should create a graphWin window, insert an image for each effect (left to right)
-# should return the window
-def warhol( filename, listOfEffects ):
+# this function takes in a list as a parameter and return a GraphWin window object
+def memeGenerator( filename, listOfEffects ):
 
     # read the image from the file
     original = gr.Image( gr.Point(0, 0), filename )
@@ -21,7 +19,7 @@ def warhol( filename, listOfEffects ):
     panels = len(listOfEffects)
 
     # create a window based on the image and how many copies
-    win = gr.GraphWin( 'Warhol', cols*panels, rows )
+    win = gr.GraphWin( 'memeGenerator', cols*panels, rows )
     allimages = []
 
     # for each effect
@@ -42,15 +40,11 @@ def warhol( filename, listOfEffects ):
         allimages.append( clone )
 
         # create some text
-        sometext = gr.Text( gr.Point( cols/2, rows/2+30 ), "Aaaaargh" )
-        sometext.setFill('red')
-        sometext.setSize( 20 )
-        sometext.draw(win)
-
-        # create an eye patch
-        patch = gr.Circle( gr.Point( cols/2-15, rows/2-30 ), 8 )
-        patch.setFill( 'black' )
-        patch.draw(win)
+        sometext = gr.Text( gr.Point( cols/2, rows/2+30 ), "flowers" ) #The Text constructor takes a Point object as the first argument and the string to draw as the second argument. For example: gr.Text( gr.Point( x, y ), 'some text' ).  
+        sometext.setFill('red') # Color using its setFill method. 
+        sometext.setSize( 20 ) # Control the size of the text using its setSize method
+        sometext.draw(win) # Draw the text into the window in order to see it. 
+        # Centered the text on the specified point
 
     # return the window
     return win, allimages
@@ -73,10 +67,10 @@ def main( argv ):
             allimages[0].move( 0, 5 )
         frame += 1
 
-        if win.checkMouse() != None:
+        if win.checkMouse() != None: 
             break
 
-        time.sleep(0.05)
+        time.sleep(0.05) # use the imported time to control when it sleeps 
 
     win.getMouse()
     win.close()
