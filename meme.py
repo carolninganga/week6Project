@@ -6,10 +6,11 @@
 
 import sys
 import graphicsPlus as gr
+import filter
 import time
 
 # this function takes in a list as a parameter and return a GraphWin window object
-def memeGenerator( filename, listOfEffects ):
+def meme( filename, listOfEffects ):
 
     # read the image from the file
     original = gr.Image( gr.Point(0, 0), filename )
@@ -27,10 +28,10 @@ def memeGenerator( filename, listOfEffects ):
         # clone the original image
         clone = original.clone() # duplicates the Image object
         # apply the filter to the clone, which filter to apply?
-        if listOfEffects[i] == 'swaprg': 
-            image.swaprg( clone )
-        elif listOfEffects[i] == 'reduceRed':
-            image.reduceRed( clone )
+        if listOfEffects[i] == 'reduceRed': 
+            filter.reduceRed( clone )
+        elif listOfEffects[i] == 'reduceGreen':
+            filter.reduceGreen( clone )
         # implied else don't do anything
         
         # move the image to the right location
@@ -52,16 +53,16 @@ def memeGenerator( filename, listOfEffects ):
 def main( argv ):
 
     if len(argv) < 3:
-        print('usage: python3 warhol.py <image filename> <effect: swaprg | reduceRed | org>')
+        print('usage: python3 memeGenerator.py <image filename> <effect: swaprg | reduceRed | org>')
         return
 
     filename = argv[1]
     listOfEffects = argv[2:] # the remaining strings
-    win, allimages = warhol( filename, listOfEffects )
+    win, allimages = meme( filename, listOfEffects )
 
     frame = 0
     while True:
-        if frame % 20 == 0:
+        if frame % 30 == 0:
             allimages[0].move( 0, -5 )
         elif frame % 20 == 10:
             allimages[0].move( 0, 5 )
