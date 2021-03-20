@@ -1,15 +1,13 @@
 
-# Bruce Maxwell
+# Caroline Ninganga
 # CS 5001 Spring 2021
-# 
+# Project 6 
 # First Image example
-#
+
 import sys
 import graphicsPlus as gr
 
-# swap the red and green values at every pixel
-# modifies the image passed to the function
-# returns nothing
+# the function swaprg switches the red and green values at every pixel
 def swaprg( src ):
     rows = src.getHeight()
     cols = src.getWidth()

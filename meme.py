@@ -1,4 +1,4 @@
-# Bruce Maxwell
+#Caroline Ninganga
 # CS 5001 Spring 2021
 # Warhol style panels
 #
